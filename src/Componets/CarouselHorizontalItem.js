@@ -23,16 +23,16 @@ const  CarouselHorizontalItem = (props)=>{
                     <Typography gutterBottom variant="h5" component="h2">
                         Heading
                     </Typography>
-                    <Typography>
-                        This is a media card. You can use this section to describe the content.
-                    </Typography>
+                    {/*<Typography>*/}
+                    {/*    This is a media card. You can use this section to describe the content.*/}
+                    {/*</Typography>*/}
                 </CardContent>
                 <CardActions>
                     <Button size="small" color="primary">
-                        View
+                        Whats app
                     </Button>
                     <Button size="small" color="primary">
-                        Edit
+                        Copy link/text
                     </Button>
                 </CardActions>
             </Card>

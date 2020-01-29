@@ -5,19 +5,26 @@ import Header from '../src/Componets/Header'
 import Template1 from '../src/Componets/template1'
 import {Row} from 'react-bootstrap';
 import CaroselHorizontal from '../src/Containers/CarouselHorizontal';
-
+import Slidder from '../src/Containers/Slidder'
+import { Container } from '@material-ui/core';
 function App() {
   return (
-      <Row>
+      <React.Fragment>
     {/*// <div className="App">*/}
     {/*  */}
+          <Container maxWidth="sm">
         <Header/>
+          </Container>
+          <Container maxWidth="sm">
+          <Slidder/>
+          </Container>
+
         <CaroselHorizontal/>
     {/*  // <Row>*/}
     {/*  // <Template1/>*/}
     {/*  // </Row>*/}
     {/*// </div>*/}
-    </Row>
+    </React.Fragment>
   );
 }
 
