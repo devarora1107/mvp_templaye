@@ -7,7 +7,17 @@ class CarouselHorizontal extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            cards:[1,2,3],
+            cards:[
+                {
+                    heading:'Honey'
+                },
+                {
+                    heading:'Corn Flour'
+                },
+                {
+                    heading:'Biscuits'
+                }
+            ],
             styles:{
                 slide: {
                     padding: 15,

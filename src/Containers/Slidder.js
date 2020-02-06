@@ -28,9 +28,9 @@ class Slidder extends React.Component{
         }
     }
     handleChangeIndex = index => {
-        this.setState({
-            index,
-        });
+        // this.setState({
+        //     index,
+        // });
     };
 
     render(){
@@ -40,7 +40,7 @@ class Slidder extends React.Component{
         const  index  = this.state.index;
         return (
             <React.Fragment>
-            <AutoPlaySwipeableViews  index={index} onChangeIndex={this.handleChangeIndex}>
+            <AutoPlaySwipeableViews  index={0} onChangeIndex={this.handleChangeIndex}>
                 {
                     this.state.items.map((item)=>{
                         return <SlidderItem

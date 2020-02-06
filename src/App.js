@@ -15,9 +15,7 @@ function App() {
           <Container maxWidth="sm">
         <Header/>
           </Container>
-          <Container maxWidth="sm">
-          <Slidder/>
-          </Container>
+          {/*x*/}
 
         <CaroselHorizontal/>
     {/*  // <Row>*/}
