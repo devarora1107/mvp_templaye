@@ -26,15 +26,16 @@ function App() {
     {/*// <div className="App">*/}
     {/*  */}
        <Switch>
-           <Route exact = '/privacy-policy' component={privacy}/>
-           <Route exact='/' component={ mainComponent}/>
 
+           <Route exact path='/' component={mainComponent}/>
+           <Route exact path = '/privacy-policy' component={privacy}/>
+       </Switch>
 
     {/*  // <Row>*/}
     {/*  // <Template1/>*/}
     {/*  // </Row>*/}
     {/*// </div>*/}
-       </Switch>
+
     </React.Fragment>
   );
 }
