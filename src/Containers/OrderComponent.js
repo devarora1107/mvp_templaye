@@ -89,7 +89,7 @@ export default class OrderComponent extends React.Component{
                         />
                     })
                 }
-                {<Button color="primary" onClick={this.handleViewMore}>{viewMoretext}</Button>}
+                {this.state.items.length>3 && <Button color="primary" onClick={this.handleViewMore}>{viewMoretext}</Button>}
             </Container>
             {this.state.orderDetails.allowedToEdit &&
             <Container style={{textAlign:"center",margin:'10px 0px'}}>
@@ -105,6 +105,8 @@ export default class OrderComponent extends React.Component{
 const styleSheet =  makeStyles({
     root: {
         minWidth: 120,
+        maxHeight:88,
+        margin:'6px 0px'
     },
     items:{
         // height:'50%',
@@ -123,19 +125,17 @@ const styleSheet =  makeStyles({
     },
     checkBox:{
         float:'right',
-        margin: '-10% 0%',
     }
 });
 
 const SimpleCard=(props)=> {
     const classes = styleSheet();
-    const bull = <span className={classes.bullet}>•</span>;
 
     // const [spacing, setSpacing] = React.useState<GridSpacing>(2);
     return (
         <Card className={classes.root}>
             <CardContent>
-
+            <div style={{display:'flex',justifyContent: "space-between"}}>
 
                         <Typography variant="h5" component="h2">
                             {props.item.itemName}
@@ -152,6 +152,7 @@ const SimpleCard=(props)=> {
                         key={props.item.id}
                     />
                 }
+                </div>
                         <Typography className={classes.pos} color="textSecondary">
                             {props.item.remarks}
                         </Typography>
