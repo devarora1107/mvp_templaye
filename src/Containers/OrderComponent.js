@@ -32,6 +32,7 @@ export default class OrderComponent extends React.Component{
             e.checked=true
             e.id=e.itemId
         })
+        items = [items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0]]
         this.setState({items:items,shopDetails,orderDetails})
     }
 
@@ -47,6 +48,7 @@ export default class OrderComponent extends React.Component{
 
 
         })
+        newState = [newState[0]]
         this.setState({
             items:newState
         })
@@ -57,7 +59,6 @@ export default class OrderComponent extends React.Component{
             .then(response => this.setState({ orderDetails:{...this.state.orderDetails,allowedToEdit:false}}));
     }
     render() {
-
         return <>
             <Container style={{textAlign:"center"}}>
                 <h2>The pados</h2>
@@ -67,12 +68,9 @@ export default class OrderComponent extends React.Component{
                 <p><b>Mobile No.</b>: {this.state.shopDetails.mobile}</p>
                 <p><b>Address</b>: {this.state.shopDetails.address}</p>
                 <p><b>Landmark</b>: {this.state.shopDetails.landmarks}</p>
-                {this.state.orderDetails.allowedToEdit &&
-                <Container style={{textAlign:"center"}}>
-                    <Button variant="contained" color="primary" onClick={this.handleAcceptOrder}>Accept order</Button>
-                </Container>}
+
             </Container>
-            <Container>
+            <Container style={{height:'350px',overflowY:'scroll'}}>
                 {
                     this.state.items.map((item,i)=>{
                         return <SimpleCard
@@ -85,7 +83,10 @@ export default class OrderComponent extends React.Component{
                     })
                 }
             </Container>
-
+            {this.state.orderDetails.allowedToEdit &&
+            <Container style={{textAlign:"center",margin:'10px 0px'}}>
+                <Button variant="contained" color="primary" onClick={this.handleAcceptOrder}>Accept order</Button>
+            </Container>}
 
 
         </>
@@ -96,7 +97,10 @@ export default class OrderComponent extends React.Component{
 const styleSheet =  makeStyles({
     root: {
         minWidth: 120,
-        height:76
+    },
+    items:{
+        height:'50%',
+        overflowY:'scroll'
     },
     bullet: {
         display: 'inline-block',
@@ -111,7 +115,7 @@ const styleSheet =  makeStyles({
     },
     checkBox:{
         float:'right',
-        margin: '-10% 0%'
+        margin: '-10% 0%',
     }
 });
 
