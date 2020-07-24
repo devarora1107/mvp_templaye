@@ -16,10 +16,12 @@ export default class OrderComponent extends React.Component{
                 shopName:'',
                 landmark:'',
                 mobile:'',
-                address:''
+                address:'',
+
             },
             items:[],
-            orderDetails:{allowedToEdit:false}
+            orderDetails:{allowedToEdit:false},
+            viewMore:false
         }
     }
     async componentDidMount() {
@@ -35,7 +37,9 @@ export default class OrderComponent extends React.Component{
         items = [items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0]]
         this.setState({items:items,shopDetails,orderDetails})
     }
-
+    handleViewMore =()=>{
+        this.setState({viewMore:!this.state.viewMore})
+    }
     handleCheckBox =(e,id)=>{
         let newState =[]
         this.state.items.map(item=>{
@@ -59,6 +63,9 @@ export default class OrderComponent extends React.Component{
             .then(response => this.setState({ orderDetails:{...this.state.orderDetails,allowedToEdit:false}}));
     }
     render() {
+        let items = this.state.items
+        if(!this.state.viewMore) items=items.slice(0,3)
+        let viewMoretext = !this.state.viewMore ? 'View more':'See less'
         return <>
             <Container style={{textAlign:"center"}}>
                 <h2>The pados</h2>
@@ -68,11 +75,11 @@ export default class OrderComponent extends React.Component{
                 <p><b>Mobile No.</b>: {this.state.shopDetails.mobile}</p>
                 <p><b>Address</b>: {this.state.shopDetails.address}</p>
                 <p><b>Landmark</b>: {this.state.shopDetails.landmarks}</p>
-
+                <p><b>Total items</b>: {this.state.items.length}</p>
             </Container>
-            <Container style={{height:'350px',overflowY:'scroll'}}>
+            <Container>
                 {
-                    this.state.items.map((item,i)=>{
+                    items.map((item,i)=>{
                         return <SimpleCard
                             handleCheckBox ={this.handleCheckBox}
                             index = {i}
@@ -82,6 +89,7 @@ export default class OrderComponent extends React.Component{
                         />
                     })
                 }
+                {<Button color="primary" onClick={this.handleViewMore}>{viewMoretext}</Button>}
             </Container>
             {this.state.orderDetails.allowedToEdit &&
             <Container style={{textAlign:"center",margin:'10px 0px'}}>
@@ -99,8 +107,8 @@ const styleSheet =  makeStyles({
         minWidth: 120,
     },
     items:{
-        height:'50%',
-        overflowY:'scroll'
+        // height:'50%',
+        // overflowY:'scroll'
     },
     bullet: {
         display: 'inline-block',
