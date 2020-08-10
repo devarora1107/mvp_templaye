@@ -25,7 +25,10 @@ export default class OrderComponent extends React.Component{
         }
     }
     async componentDidMount() {
-            const response = await axios.get('http://thepados.com/api/o/8')
+            let url = window.location.href
+            let splitUrl = url.split('/')
+        let orderId = splitUrl[splitUrl.length-1]
+            const response = await axios.get(`http://thepados.com/api/o/${orderId}`)
             let items =response && response.data && response.data.data &&response.data.data.items
         let shopDetails = response && response.data && response.data.data &&response.data.data.shopDetails
         let orderDetails = response && response.data && response.data.data &&response.data.data.orderDetails
@@ -64,18 +67,18 @@ export default class OrderComponent extends React.Component{
     }
     render() {
         let items = this.state.items
-        if(!this.state.viewMore) items=items.slice(0,3)
+        if(!this.state.viewMore) items=items.slice(0,2)
         let viewMoretext = !this.state.viewMore ? 'View more':'See less'
         return <>
             <Container style={{textAlign:"center"}}>
-                <h2>The pados</h2>
+                <h1 style={{fontSize:48}}>Pados</h1>
             </Container>
             <Container maxWidth="sm">
-                <p><b>Shop Name</b>:{this.state.shopDetails.shopName}</p>
-                <p><b>Mobile No.</b>: {this.state.shopDetails.mobile}</p>
-                <p><b>Address</b>: {this.state.shopDetails.address}</p>
-                <p><b>Landmark</b>: {this.state.shopDetails.landmarks}</p>
-                <p><b>Total items</b>: {this.state.items.length}</p>
+                <p style={{fontSize:20}}><b>Shop Name</b>:<span style={{fontSize:16}}>{this.state.shopDetails.shopName}</span></p>
+                <p style={{fontSize:20}}><b>Mobile No.</b>: <span style={{fontSize:16}}>{this.state.shopDetails.mobile}</span></p>
+                <p style={{fontSize:20}}><b>Address</b>: <span style={{fontSize:16}}>{this.state.shopDetails.address}</span></p>
+                <p style={{fontSize:20}}><b>Landmark</b>: <span style={{fontSize:16}}>{this.state.shopDetails.landmarks}</span></p>
+                <p style={{fontSize:20}}><b>Total items</b>: <span style={{fontSize:16}}>{this.state.items.length}</span></p>
             </Container>
             <Container>
                 {
@@ -89,7 +92,7 @@ export default class OrderComponent extends React.Component{
                         />
                     })
                 }
-                {this.state.items.length>3 && <Button color="primary" onClick={this.handleViewMore}>{viewMoretext}</Button>}
+                {this.state.items.length>2 && <Button color="primary" onClick={this.handleViewMore}>{viewMoretext}</Button>}
             </Container>
             {this.state.orderDetails.allowedToEdit &&
             <Container style={{textAlign:"center",margin:'10px 0px'}}>
@@ -106,7 +109,7 @@ const styleSheet =  makeStyles({
     root: {
         minWidth: 120,
         maxHeight:88,
-        margin:'6px 0px'
+        margin:'5px 0px'
     },
     items:{
         // height:'50%',
@@ -137,7 +140,7 @@ const SimpleCard=(props)=> {
             <CardContent>
             <div style={{display:'flex',justifyContent: "space-between"}}>
 
-                        <Typography variant="h5" component="h2">
+                        <Typography variant="h5" component="p" style={{fontSize:24}}>
                             {props.item.itemName}
                         </Typography>
                 {   props.allowedToEdit &&

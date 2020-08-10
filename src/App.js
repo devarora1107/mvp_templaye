@@ -29,7 +29,7 @@ function App() {
        <Switch>
 
            {/*<Route exact path='/' component={mainComponent}/>*/}
-           <Route exact path='/o/:orderCode' component={OrderComponent}/>
+           <Route exact path='/id/:orderCode' component={OrderComponent}/>
            <Route exact path = '/privacy-policy' component={privacy}/>
        </Switch>
 
