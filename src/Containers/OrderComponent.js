@@ -37,8 +37,7 @@ export default class OrderComponent extends React.Component{
             e.checked=true
             e.id=e.itemId
         })
-        items = [items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0],items[0]]
-        this.setState({items:items,shopDetails,orderDetails})
+        this.setState({items:items,shopDetails,orderDetails,orderId:orderId})
     }
     handleViewMore =()=>{
         this.setState({viewMore:!this.state.viewMore})
@@ -62,7 +61,8 @@ export default class OrderComponent extends React.Component{
     }
     handleAcceptOrder =()=>{
         console.log(this.state.items)
-        axios.patch('http://thepados.com/api/o/8', {items:this.state.items})
+
+        axios.patch(`http://thepados.com/api/o/${this.state.orderId}`, {items:this.state.items})
             .then(response => this.setState({ orderDetails:{...this.state.orderDetails,allowedToEdit:false}}));
     }
     render() {
@@ -141,7 +141,7 @@ const SimpleCard=(props)=> {
             <div style={{display:'flex',justifyContent: "space-between"}}>
 
                         <Typography variant="h5" component="p" style={{fontSize:24}}>
-                            {props.item.itemName}
+                            {props.item.name}
                         </Typography>
                 {   props.allowedToEdit &&
                     <Checkbox
